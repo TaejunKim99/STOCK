@@ -1,0 +1,21 @@
+package com.web_stock.stock.util;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Print {
+    public static void printAlertMessage(HttpServletResponse response, String message) {
+        try {
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script> alert('" + message + "');");
+            out.println("history.go(-1); </script>");
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

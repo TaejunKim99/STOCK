@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">My Stock Portfolio</h1>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark text-center">
+        <tr>
+            <th>주식 명</th>
+            <th>평균 구매 가격</th>
+            <th>현재 가격</th>
+            <th>소유한 주식 개수</th>
+            <th>평균 구매 총 가격</th>
+            <th>현재 총 가격</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="stock : ${stockList}">
+            <td>
+            <a th:href="@{/stock/sale(stockName=${stock.stockName}, stockPrice=${stock.currentStockPrice}, stockCount=${stock.stockCount})}"
+               style="text-decoration: none; color: inherit;">
+                <span th:text="${stock.stockName}">Stock Name</span>
+            </a>
+            </td>
+            <td th:text="${stock.stockPrice}">100.0</td>
+            <td th:text="${stock.currentStockPrice}">100.0</td>
+            <td th:text="${stock.stockCount}">1</td>
+            <td th:text="${stock.totalPrice}">1</td>
+            <td th:text="${stock.currentTotalPrice}">100.0</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr class="table-light">
+            <td colspan="1" class="text-end fw-bold">보유금액 :</td>
+            <td class="fw-bold">
+                <span th:text="${member.getUserMoney()}">0</span>
+            </td>
+            <td colspan="1" class="text-end fw-bold">구매 시점 총 금액 :</td>
+            <td class="fw-bold">
+                <span th:text="${#numbers.formatInteger(totalAsset, 0)}">0</span>
+            </td>
+            <td colspan="1" class="text-end fw-bold">현재 시점 총 금액 :</td>
+            <td class="fw-bold">
+                <span th:text="${#numbers.formatInteger(currentTotalAsset, 0)}">0</span>
+            </td>
+        </tr>
+
+        </tfoot>
+    </table>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
