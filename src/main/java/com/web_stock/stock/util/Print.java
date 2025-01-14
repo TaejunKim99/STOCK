@@ -11,8 +11,10 @@ public class Print {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html; charset=utf-8");
             PrintWriter out = response.getWriter();
-            out.println("<script> alert('" + message + "');");
-            out.println("history.go(-1); </script>");
+            out.println("<script>");
+            out.println("alert('" + message + "');");
+            out.println("location.href = '/stocklist';");
+            out.println("</script>");
             out.close();
         } catch (IOException e) {
             e.printStackTrace();

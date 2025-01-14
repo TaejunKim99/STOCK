@@ -72,15 +72,16 @@
 	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
-				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesser</a></h1>
+				<h1><i class="sl-icon-energy"></i><a href="/">BuyThen</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="portfolio.html">Portfolio</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a class="active" href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="/">Home</a></li>
+						<li><a href="/stocklist">주식 리스트</a></li>
+						<li><a href="portfolio.html">주식 구매</a></li>
+						<li><a th:if="${member}" href="/mypage">나의 정보</a></li>
+						<li><a th:if="${member} == null" href="/login">로그인</a></li>
+						<li><a class="active" href="/about">정보</a></li>
+						<li><a href="/contact">문의하기</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -101,9 +102,9 @@
 							<div class="about-inner">
 								<img class="img-responsive" src="images/image_about.jpg" alt="About">
 								<h3>History</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+								<p>BuyThen은 어떠한 주식을 이 때 샀더라면... 지금은 얼마일까? 에서 시작했습니다. 그렇기 때문에 BuyThen이 제공하는 기능은 많지 않습니다.</p>
 								<blockquote>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+									<p>회원가입 정보는 간단하게 설정하여 회원 정보가 노출 되더라도 영향없는 아이디와 비밀번호를 사용해주세요. 비밀번호는 암호화를 진행하지만, 혹시 모를 상황에 대비해서 평소에 사용하지 않는 비밀번호를 사용하길 권장드립니다.</p>
 								</blockquote>
 							</div>
 						</div>
@@ -113,21 +114,16 @@
 					<aside class="sidebar">
 						<div class="row">
 							<div class="col-md-12 side">
-								<h3>Categories</h3>
+								<h3>Function</h3>
 								<ul>
-									<li><i class="icon-check"></i><a href="#">Web Design</a></li>
-									<li><i class="icon-check"></i><a href="#">Branding &amp; Identity</a></li>
-									<li><i class="icon-check"></i><a href="#">Free HTML5</a></li>
-									<li><i class="icon-check"></i><a href="#">HandCrafted Templates</a></li>
-									<li><i class="icon-check"></i><a href="#">Free Bootstrap Template</a></li>
-									<li><i class="icon-check"></i><a href="#">Free HTML5 Template</a></li>
-									<li><i class="icon-check"></i><a href="#">Free HTML5 &amp; CSS3 Template</a></li>
-									<li><i class="icon-check"></i><a href="#">HandCrafted Templates</a></li>
+									<li><i class="icon-check"></i><a href="#">주식 정보</a></li>
+									<li><i class="icon-check"></i><a href="#">주식 구매 &amp; 주식 판매</a></li>
+									<li><i class="icon-check"></i><a href="#">개인 자산 정보</a></li>
 								</ul>
 							</div>
 							<div class="col-md-12 side">
-								<h3>Paragraph</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<h3>End Word</h3>
+								<p>방문해주셔서 감사합니다. 행복한 하루 되십시요 </p>
 							</div>
 						</div>
 					</aside>

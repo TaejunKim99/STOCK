@@ -1,6 +1,8 @@
 package com.web_stock.stock.controller;
 import com.web_stock.stock.entity.Member;
+import com.web_stock.stock.service.StockService;
 import com.web_stock.stock.util.SessionConst;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,20 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 
 import java.util.List;
 
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class StockController {
 
-    @Autowired
-    private StockRepository stockRepository;
+    private final StockRepository stockRepository;
+    private final StockService stockService;
 
     @GetMapping("/stocklist")
-    public String stocklist(Model model,@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) Member member) {
+    public String stockList(Model model,@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) Member member) {
 
         model.addAttribute("member", member);
         addPaginationAttributes(model, 0, 10);
@@ -54,5 +58,13 @@ public class StockController {
         model.addAttribute("stockList", stockList);
         model.addAttribute("allStockCount", allStockCount);
         model.addAttribute("currentPage", pageIndex);
+    }
+
+    @GetMapping("/stock/search")
+    public String search(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) Member member, @RequestParam String stockName, Model model) {
+        List<Stock> stockList = stockService.stockSearch(stockName);
+        model.addAttribute("stockList", stockList);
+        model.addAttribute("member", member);
+        return "stock/stockList";
     }
 }

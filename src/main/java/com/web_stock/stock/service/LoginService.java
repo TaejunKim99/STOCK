@@ -27,7 +27,6 @@ public class LoginService {
 
     public Result signUp(SignUpDto signUpDto, HttpServletRequest request) {
         Result result = new Result();
-
         Member member = new Member();
         member.setUserId(signUpDto.getUserId());
         member.setUserPassword(signUpDto.getUserPassword());
@@ -48,14 +47,14 @@ public class LoginService {
         Member findMember = memberRepository.findByUserId(loginDto.getUserId());
 
         if (findMember == null) {
-            log.info("로그인 정보를 찾을 수 없습니다.");
+            log.error("로그인 정보를 찾을 수 없습니다.");
             result.setMsg(FAIL_LOGIN);
             result.setCode(FAIL);
             return result;
         }
 
         if (!verifyPassword(loginDto, findMember)) {
-            log.info("로그인 비밀번호와 저장된 로그인 유저의 비밀번호가 같지 않습니다.");
+            log.error("로그인 비밀번호와 저장된 로그인 유저의 비밀번호가 같지 않습니다.");
             result.setMsg(FAIL_LOGIN);
             result.setCode(FAIL);
             return result;

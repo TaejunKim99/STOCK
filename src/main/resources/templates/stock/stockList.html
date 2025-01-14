@@ -1,18 +1,23 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Lesser &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-    <meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-    <meta name="author" content="FreeHTML5.co" />
+    <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co"/>
+    <meta name="keywords"
+          content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"/>
+    <meta name="author" content="FreeHTML5.co"/>
     <style>
         .pagination {
             display: inline-block;
@@ -42,6 +47,27 @@
         .pagination a {
             transition: all 0.2s ease-in-out;
         }
+
+        .search {
+            position: relative;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        img {
+            position : absolute;
+            width: 17px;
+            top: 10px;
+            right: 12px;
+            margin: 0;
+        }
     </style>
 
     <!--
@@ -64,10 +90,10 @@
     <meta property="og:url" content=""/>
     <meta property="og:site_name" content=""/>
     <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -119,8 +145,13 @@
     <div id="fh5co-about-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <div class="col-md-6 col-md-offset-3 text-center">
                     <h2>BuyThen</h2>
+                    <div class="col-md-6 col-md-offset-3 text-center" style="position: absolute; left: 350px; top: 10px">
+                        <form action="/stock/search" method="get">
+                        <input type="text" placeholder="Search..." id="stockName" name="stockName">
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -141,31 +172,33 @@
                                         <thead>
                                         <tr>
                                             <th>Stock ID</th>
-                                            <th>주식 이름</th>
-                                            <th>주식 가격</th>
+                                            <th>주식 명</th>
+                                            <th>가격(종가)</th>
                                             <th>날짜</th>
-                                            <th>지난 주 가격</th>
+                                            <th>지난 주 가격(종가)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="stock : ${stockList}">
                                             <td th:text="${stock.stockId}">1</td>
                                             <td>
-                                          <!--      <a th:href="@{/stock/purchase(stockName=${stock.stockName}, stockPrice=${stock.stockPrice})}"
-                                                   style="text-decoration: none; color: inherit;">
-                                                    <span th:text="${stock.stockName}"></span>
-                                                </a>-->
+                                                <!--      <a th:href="@{/stock/purchase(stockName=${stock.stockName}, stockPrice=${stock.stockPrice})}"
+                                                         style="text-decoration: none; color: inherit;">
+                                                          <span th:text="${stock.stockName}"></span>
+                                                      </a>-->
                                                 <a href="#" style="text-decoration: none; color: inherit;"
                                                    th:attr="data-stock-name=${stock.stockName},data-stock-price=${stock.stockPrice}"
                                                    onclick="openPopup(this)">
                                                     <span th:text="${stock.stockName}"></span>
                                                 </a>
-
                                             </td>
-                                            <td th:text="${stock.stockPrice}">100.0</td>
+                                            <td th:text="${#numbers.formatInteger(stock.stockPrice, 0, 'COMMA') + '원'}">
+                                                100.0
+                                            </td>
                                             <td th:text="${stock.basDt}">2022-01-01</td>
-                                            <td th:text="${stock.priceLastWeek}">100.0</td>
-
+                                            <td th:text="${#numbers.formatInteger(stock.priceLastWeek, 0, 'COMMA') + '원'}">
+                                                100.0
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -212,7 +245,8 @@
             <div class="container">
                 <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                     <h3>About Us</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                        live the blind texts. </p>
                 </div>
                 <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                     <h3>Our Services</h3>
@@ -243,7 +277,9 @@
 
 
                 <div class="col-md-12 fh5co-copyright text-center">
-                    <p>&copy; 2016 Free HTML5 template. All Rights Reserved. <span>Designed with <i class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images by <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></p>
+                    <p>&copy; 2016 Free HTML5 template. All Rights Reserved. <span>Designed with <i
+                            class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images by <a
+                            href="http://unsplash.com/" target="_blank">Unsplash</a></span></p>
                 </div>
 
             </div>
@@ -251,15 +287,15 @@
     </div>
 
     <!-- jQuery -->
-    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
     <!-- jQuery Easing -->
-    <script th:src="@{js/jquery.easing.1.3.js}"></script>
+    <script th:src="@{/js/jquery.easing.1.3.js}"></script>
     <!-- Bootstrap -->
-    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- Waypoints -->
-    <script th:src="@{js/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/js/jquery.waypoints.min.js}"></script>
     <!-- MAIN JS -->
-    <script th:src="@{js/main.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
 
     <script>
         const totalDataCount = document.getElementById("allStockCount").value;
@@ -318,9 +354,10 @@
         var url = '/stock/purchase?stockName=' + encodeURIComponent(stockName) + '&stockPrice=' + encodeURIComponent(stockPrice);
 
         // 팝업 창 열기
-        window.open(url, 'popupWindow', 'width=600,height=600,scrollbars=yes');
+        window.open(url, 'popupWindow', 'width=700,height=700,scrollbars=yes');
     }
 </script>
 </body>
 </html>
 
+</html>

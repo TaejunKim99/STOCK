@@ -47,6 +47,5 @@ public class StockOrder {
     }
 
     public StockOrder() {
-
     }
 }
