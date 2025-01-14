@@ -13,8 +13,7 @@ public class Print {
             PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('" + message + "');");
-            out.println("location.href = '/stocklist';");
-            out.println("</script>");
+            out.println("history.go(-1); </script>");
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
