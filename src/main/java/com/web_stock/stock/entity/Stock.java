@@ -18,6 +18,6 @@ public class Stock {
     @Column
     private String basDt;
     @Column
-    private String priceLastWeek;
+    private Integer priceLastWeek;
 
 }

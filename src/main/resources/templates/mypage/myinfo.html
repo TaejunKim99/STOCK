@@ -185,26 +185,37 @@
                                                     <span th:text="${stock.stockName}">Stock Name</span>
                                                 </a>
                                             </td>
-                                            <td th:text="${stock.stockPrice}">100.0</td>
-                                            <td th:text="${stock.currentStockPrice}">100.0</td>
+                                            <td>
+                                                <span th:text="${#numbers.formatInteger(stock.stockPrice, 0, 'COMMA') + '원'}"></span>
+                                            </td>
+                                            <td> <span th:text="${#numbers.formatInteger(stock.currentStockPrice, 0, 'COMMA') + '원'}"></span>
+                                                <span th:if="${stock.stockPrice < stock.currentStockPrice}"
+                                                      style="color: red; font-weight: bold;"> ▲</span>
+                                                <span th:if="${stock.stockPrice < stock.currentStockPrice}"
+                                                      style="color: red; font-weight: bold;" th:text="${stock.currentStockPrice - stock.stockPrice}"></span>
+                                                <span th:if="${stock.stockPrice > stock.currentStockPrice}"
+                                                      style="color: blue; font-weight: bold;"> ▼</span>
+                                                <span th:if="${stock.stockPrice > stock.currentStockPrice}"
+                                                      style="color: blue; font-weight: bold;" th:text="${stock.stockPrice - stock.currentStockPrice}"></span>
+                                            </td>
                                             <td th:text="${stock.stockCount}">1</td>
-                                            <td th:text="${stock.totalPrice}">1</td>
-                                            <td th:text="${stock.currentTotalPrice}">100.0</td>
+                                            <td th:text="${#numbers.formatInteger(stock.totalPrice, 0, 'COMMA') + '원'}">
+                                            <td th:text="${#numbers.formatInteger(stock.currentTotalPrice, 0, 'COMMA') + '원'}">
                                         </tr>
                                         </tbody>
                                         <tfoot>
                                         <tr class="table-light">
                                             <td colspan="1" class="text-end fw-bold">보유금액 :</td>
                                             <td class="fw-bold">
-                                                <span th:text="${member.getUserMoney()}">0</span>
-                                            </td>
+                                            <span th:text="${#numbers.formatInteger(member.getUserMoney, 0, 'COMMA') + '원'}">
+                                            </span>
                                             <td colspan="1" class="text-end fw-bold">구매 시점 총 금액 :</td>
                                             <td class="fw-bold">
-                                                <span th:text="${#numbers.formatInteger(totalAsset, 0)}">0</span>
+                                                <span th:text="${#numbers.formatInteger(totalAsset, 0, 'COMMA') + '원'}">0</span>
                                             </td>
                                             <td colspan="1" class="text-end fw-bold">현재 시점 총 금액 :</td>
                                             <td class="fw-bold">
-                                                <span th:text="${#numbers.formatInteger(currentTotalAsset, 0)}">0</span>
+                                                <span th:text="${#numbers.formatInteger(currentTotalAsset, 0, 'COMMA') + '원'}">0</span>
                                             </td>
                                         </tr>
 
