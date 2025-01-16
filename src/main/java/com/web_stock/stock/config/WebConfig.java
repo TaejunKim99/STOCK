@@ -13,7 +13,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(1)
                 .addPathPatterns("/**") // 인터셉터를 적용할 URL 패턴
-                .excludePathPatterns("/login","/about","/stocklist/**","/","/images/**","/signup","/resources/**"); // 제외할 패턴
+//                .excludePathPatterns("/login","/about","/stocklist/**","/","/images/**","/signup","/resources/**"); // 제외할 패턴
+                .excludePathPatterns("/**"); // 제외할 패턴
+
     }
 
     @Override

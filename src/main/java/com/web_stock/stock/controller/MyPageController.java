@@ -44,12 +44,13 @@ public class MyPageController {
 
     @GetMapping("/about")
     public String about(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) Member member, Model model) {
-
+        model.addAttribute("member", member);
         return "lesser/about";
     }
 
     @GetMapping("/contact")
-    public String contact(Model model) {
+    public String contact(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) Member member, Model model) {
+        model.addAttribute("member", member);
         return "lesser/contact";
     }
 }
