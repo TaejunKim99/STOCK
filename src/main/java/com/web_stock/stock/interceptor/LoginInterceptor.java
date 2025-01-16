@@ -18,6 +18,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         log.info("[Interceptor] preHandle");
         StringBuffer requestURL = request.getRequestURL();
         log.info("인증 체크 인터셉터 {} ", requestURL);
+        String remoteAddr = request.getRemoteAddr();
+        log.info("LOGIN IP {}" , remoteAddr);
 
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute(SessionConst.LOGIN_USER) == null) {

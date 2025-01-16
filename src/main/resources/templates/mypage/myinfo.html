@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lesser &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
+    <title>BuyThen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co"/>
     <meta name="keywords"
@@ -180,9 +180,14 @@
                                         <tbody>
                                         <tr th:each="stock : ${stockList}">
                                             <td>
-                                                <a th:href="@{/stock/sale(stockName=${stock.stockName}, stockPrice=${stock.currentStockPrice}, stockCount=${stock.stockCount})}"
-                                                   style="text-decoration: none; color: inherit;">
-                                                    <span th:text="${stock.stockName}">Stock Name</span>
+<!--                                                <a th:href="@{/stock/sale(stockName=${stock.stockName}, stockPrice=${stock.currentStockPrice}, stockCount=${stock.stockCount})}"-->
+<!--                                                   style="text-decoration: none; color: inherit;">-->
+<!--                                                    <span th:text="${stock.stockName}">Stock Name</span>-->
+<!--                                                </a>-->
+                                                <a href="#" style="text-decoration: none; color: inherit;"
+                                                   th:attr="data-stock-name=${stock.stockName},data-stock-price=${stock.currentStockPrice},data-stock-count=${stock.stockCount}"
+                                                   onclick="openPopup(this)">
+                                                    <span th:text="${stock.stockName}"></span>
                                                 </a>
                                             </td>
                                             <td>
@@ -368,9 +373,10 @@
     function openPopup(element) {
         var stockName = element.getAttribute("data-stock-name");
         var stockPrice = element.getAttribute("data-stock-price");
+        var stockCount = element.getAttribute("data-stock-count");
 
         // 팝업 창 URL 생성
-        var url = '/stock/purchase?stockName=' + encodeURIComponent(stockName) + '&stockPrice=' + encodeURIComponent(stockPrice);
+        var url = '/stock/sale?stockName=' + encodeURIComponent(stockName) + '&stockPrice=' + encodeURIComponent(stockPrice) + '&stockCount=' + encodeURIComponent(stockCount);
 
         // 팝업 창 열기
         window.open(url, 'popupWindow', 'width=700,height=700,scrollbars=yes');

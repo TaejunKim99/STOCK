@@ -26,8 +26,11 @@ public class OrderController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/stock/purchase")
-    public String purchasePageInit(@ModelAttribute StockOrderDto stockOrderDto, Model model) {
+    public String purchasePageInit(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) Member member,
+                                   @ModelAttribute StockOrderDto stockOrderDto, Model model) {
         model.addAttribute("stock", stockOrderDto);
+        model.addAttribute("member",member);
+
         return "stock/order";
     }
 

@@ -67,12 +67,17 @@
         </div>
         <div class="mb-3">
             <label for="stockCount" class="form-label">Stock Count</label>
-            <input type="number" id="stockCount" name="stockCount" class="form-control" placeholder="Enter stock count"
+            <input type="number" th:max="${member.userMoney / stock.stockPrice}" min="0" id="stockCount" name="stockCount" class="form-control" placeholder="Enter stock count"
                    required>
         </div>
         <div class="mb-3">
             <label for="totalPrice" class="form-label">Total Price</label>
             <input type="number" id="totalPrice" name="totalPrice" class="form-control" readonly disabled>
+        </div>
+
+        <div class="mb-2">
+            <label for="UserMoney" class="form-label">소유 잔액 : </label>
+            <input th:value="${#numbers.formatInteger(member.userMoney, 0, 'COMMA') + '원'}" id="UserMoney" name="UserMoney" readonly disabled/>
         </div>
         <button type="submit" class="btn btn-primary w-100">구매하기</button>
     </form>
