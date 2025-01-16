@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.web-stock</groupId>
-	<artifactId>stock</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>java</artifactId>
+	<version>app</version>
 	<name>stock</name>
 	<description>web for stock service</description>
 	<url/>
